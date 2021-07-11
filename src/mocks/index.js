@@ -14,13 +14,13 @@ if (process.env.NODE_ENV === "development") {
   sales = salesSeries.gaussian({
     mean: 360,
     variance: 10,
-    decimalDigits: 0
+    decimalDigits: 0,
   });
 
   const subscriptionsSeries = new Series({ from, until, interval, keyName });
   subscriptions = subscriptionsSeries.gaussian({
     mean: 9,
     variance: 5,
-    decimalDigits: 0
+    decimalDigits: 0,
   });
 }
