@@ -7,8 +7,18 @@ import SummaryContainer from "./SummaryContainer";
 import { connect } from "react-redux";
 import { fetchDataset } from "./DashboardSlice";
 
-class DashboardShell extends Component {
-  constructor(props) {
+interface DashboardShellProps {
+  fetchDataset: (url: string) => Promise<any>;
+}
+
+interface DashboardShellPropsState {
+  selectedLabel: string;
+}
+class DashboardShell extends Component<
+  DashboardShellProps,
+  DashboardShellPropsState
+> {
+  constructor(props: DashboardShellProps) {
     super(props);
     this.state = { selectedLabel: "" };
 
@@ -19,7 +29,7 @@ class DashboardShell extends Component {
     this.props.fetchDataset(`${process.env.REACT_APP_BASE_URL}/totals/`);
   }
 
-  handleSelectChange(event) {
+  handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedLabel = event.target.selectedOptions[0].label;
     this.props.fetchDataset(event.target.value);
     this.setState({ selectedLabel });
@@ -30,8 +40,8 @@ class DashboardShell extends Component {
       { label: "Sales", value: `${process.env.REACT_APP_BASE_URL}/sales/` },
       {
         label: "Subscriptions",
-        value: `${process.env.REACT_APP_BASE_URL}/subscriptions/`
-      }
+        value: `${process.env.REACT_APP_BASE_URL}/subscriptions/`,
+      },
     ];
 
     return (
@@ -40,7 +50,7 @@ class DashboardShell extends Component {
         <div className="field">
           <select id="select-product" onChange={this.handleSelectChange}>
             <option value="">--</option>
-            {optionsForSelect.map(option => (
+            {optionsForSelect.map((option) => (
               <option key={option.label} value={option.value}>
                 {option.label}
               </option>
@@ -80,7 +90,7 @@ class DashboardShell extends Component {
 }
 
 const mapDispatchToProps = {
-  fetchDataset
+  fetchDataset,
 };
 
 export default connect(null, mapDispatchToProps)(DashboardShell);
