@@ -2,7 +2,6 @@ import React from "react";
 import LineChart from "./LineChart";
 import { connect } from "react-redux";
 import { DashboardState, DataPoint } from "./DashboardSlice";
-//import PropTypes from "prop-types";
 
 interface ChartContainerProps {
   dataset: DataPoint[];
@@ -15,11 +14,7 @@ const ChartContainer = ({ dataset, selectedLabel }: ChartContainerProps) => {
 
   return (
     <div>
-      <LineChart
-        chartLabels={chartLabels}
-        chartValues={chartValues}
-        label={selectedLabel}
-      />
+      <LineChart chartLabels={chartLabels} chartValues={chartValues} label={selectedLabel} />
     </div>
   );
 };
@@ -27,10 +22,5 @@ const ChartContainer = ({ dataset, selectedLabel }: ChartContainerProps) => {
 const mapStateToProps = (state: { dataset: DashboardState }) => {
   return { dataset: state.dataset.data };
 };
-
-//ChartContainer.propTypes = {
-//dataset: PropTypes.array.isRequired,
-//selectedLabel: PropTypes.string.isRequired,
-//};
 
 export default connect(mapStateToProps)(ChartContainer);
