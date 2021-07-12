@@ -1,6 +1,5 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import PropTypes from "prop-types";
 
 interface LineChartProps {
   chartLabels: string[];
@@ -45,12 +44,6 @@ const LineChart = ({ chartLabels, chartValues, label }: LineChartProps) => {
       }}
     />
   );
-};
-
-LineChart.propTypes = {
-  chartValues: PropTypes.array.isRequired,
-  chartLabels: PropTypes.array.isRequired,
-  label: PropTypes.string.isRequired,
 };
 
 export default LineChart;

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { DashboardState } from "./DashboardSlice";
 
 interface SummaryContainerProps {
@@ -8,10 +7,7 @@ interface SummaryContainerProps {
   subscriptionsTotal: number;
 }
 
-const SummaryContainer = ({
-  salesTotal,
-  subscriptionsTotal,
-}: SummaryContainerProps) => {
+const SummaryContainer = ({ salesTotal, subscriptionsTotal }: SummaryContainerProps) => {
   return (
     <div className="summary flex flex-row">
       <div className="card bg-indigo">
@@ -31,11 +27,6 @@ const mapStateToProps = (state: { dataset: DashboardState }) => {
     salesTotal: state.dataset.salesTotal,
     subscriptionsTotal: state.dataset.subscriptionsTotal,
   };
-};
-
-SummaryContainer.propTypes = {
-  salesTotal: PropTypes.number.isRequired,
-  subscriptionsTotal: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(SummaryContainer);
